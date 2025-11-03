@@ -1,0 +1,4 @@
+kagglehub
+scikit-learn
+numpy
+tensorflow
