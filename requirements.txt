@@ -2,3 +2,5 @@ kagglehub
 scikit-learn
 numpy
 tensorflow
+matplotlib
+
