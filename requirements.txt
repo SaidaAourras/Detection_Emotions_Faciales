@@ -4,5 +4,6 @@ numpy
 tensorflow
 matplotlib
 opencv-python
-
+sqlalchemy
+python-dotenv
 
