@@ -30,7 +30,7 @@ async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(g
     # decoder avec openCv
     img = cv2.imdecode(numpy_img , cv2.IMREAD_COLOR)
         
-    _ , emotions , scores = cnn_predict.detect_and_predict(img)
+    _ , emotions , scores = cnn_predict.detect_and_predict(img , 'CNN_model.keras')
     
     print(emotions)
     print(scores)

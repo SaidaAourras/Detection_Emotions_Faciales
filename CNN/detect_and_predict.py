@@ -4,8 +4,8 @@ import numpy as np
 
 
 
-def detect_and_predict(img):
-    model = tf.keras.models.load_model('CNN_model.keras')
+def detect_and_predict(img , model):
+    model = tf.keras.models.load_model(model)
     emotion_labels = ['angry', 'disgusted', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
 
     # img = cv2.imread(img)
