@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
 
     steps:
       - name:  Checkout repository
@@ -25,7 +24,7 @@ jobs:
       
       - name: Load enviroment variables
         run: |
-          export $(grep -v '^#' .env | xargs)
+            export $(grep -v '^#' .env | xargs)
       
       - name: Run tests
         run: |
