@@ -1,14 +1,18 @@
 import cv2
 import tensorflow as tf
 import numpy as np
-
+from fastapi import UploadFile
 
 
 def detect_and_predict(img , model):
     model = tf.keras.models.load_model(model)
     emotion_labels = ['angry', 'disgusted', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
-
-    # img = cv2.imread(img)
+    
+    # verifier si l'image est de type np.ndarray ou non
+    if isinstance(img , np.ndarray):
+        pass
+    else:
+        img = cv2.imread(img)
 
     gray_img = cv2.cvtColor(img , cv2.COLOR_BGR2GRAY)
 
@@ -33,7 +37,7 @@ def detect_and_predict(img , model):
 
         pred = model.predict(img_)
         emotion = emotion_labels[np.argmax(pred)]
-        score = np.max(pred)
+        score = float(np.max(pred))
         
         emotions.append(emotion)
         scores.append(score)
