@@ -10,10 +10,10 @@ client = TestClient(app)
 
 @pytest.fixture
 def my_model():
-    return tf.keras.models.load_model('.\CNN\CNN_model.keras')
+    return tf.keras.models.load_model('CNN\CNN_model.keras')
 
 def test_verify_model(my_model):
-    assert os.path.exists('.\CNN\CNN_model.keras')
+    assert os.path.exists('CNN\CNN_model.keras')
     model = my_model
     assert model 
 
