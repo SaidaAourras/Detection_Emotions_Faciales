@@ -22,10 +22,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
-      - name: Load enviroment variables
-        run: |
-            export $(grep -v '^#' .env | xargs)
-      
       - name: Run tests
+        env:
+          USER : 'postgres'
+          PASSWORD : '12345678'
+          HOST : 'localhost'
+          PORT : '5432'
+          DATABASE : 'Predict_Emotion'
         run: |
           pytest -v
