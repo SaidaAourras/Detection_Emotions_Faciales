@@ -1,5 +1,6 @@
 kagglehub
 fastapi
+httpx
 scikit-learn
 numpy
 tensorflow
