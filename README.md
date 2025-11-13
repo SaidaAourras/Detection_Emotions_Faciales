@@ -1,23 +1,93 @@
-La fonction image_dataset_from_directory() nous aide à charger les données à partir de dossiers organisés de la manière suivante :
-    
-    train_path/
-    ├── happy/
-    │   ├── img1.jpg
-    │   ├── img2.jpg
-    ├── sad/
-    │   ├── img3.jpg
-    │   ├── img4.jpg
+# Détection d’Émotions Faciales
 
-Elle retourne les images sous forme de tenseurs, groupées en tuples de la forme :
+## I - Context Géneral
 
-    (image_batches, label_batches)
+Ce projet consiste à développer un prototype d’API capable de détecter un visage sur une photo, prédire l’émotion correspondante et enregistrer le résultat dans une base de données.
+L’objectif est d’évaluer la faisabilité d’une future solution SaaS d’analyse émotionnelle pour des tests produits et des expériences UX.
 
-en considérant les noms des sous-dossiers comme noms de classes.
+## II - Planification
 
-Par défaut, le type des labels est int, mais grâce au paramètre label_mode= [ 'categorical', 'binary', 'int' ], il est possible de modifier leur format :
+| N°  | Tâche                                                | Description courte |
+|----|-------------------------------------------------------|--------------------|
+| 1  | Documentation des outils et notions                   | Étudier les technologies et concepts nécessaires au projet. |
+| 2  | Préparation et exploration des données                | Analyser et nettoyer les données utilisées pour l’entraînement. |
+| 3  | Entraînement du CNN                                   | Créer et entraîner le modèle de classification des émotions. |
+| 4  | Détection de visages (OpenCV & Haar Cascade)          | Implémenter la détection automatique de visages sur les images. |
+| 5  | Création de l’API FastAPI                             | Développer l’API pour recevoir les images et retourner les prédictions. |
+| 6  | Tests unitaires & GitHub Actions                      | Mettre en place les tests et l’intégration continue. |
 
- - **int** :  les labels sont des entiers (ex. 0, 1, 2, …)
+## III - Arborescence de l'Architecture du Projet
 
- - **categorical** : les labels sont encodés sous forme de vecteurs one-hot (ex. [0, 0, 1, 0])
+        Detection_Emotions_Faciales/
+        ├── backend/
+        │   ├── CNN_model.keras/
+        │   ├── database.py
+        │   ├── main.py
+        │   └── models.py
+        ├── CNN/
+        │   ├── images/
+        │   ├── Analyse_kagglehub_data.ipynb
+        │   ├── detect_and_predict.py
+        │   └── haarcascade_frontalface_default.xml
+        ├── .gitignore
+        ├── README.md
+        ├── requirements.txt
+        └── test_unitaire.py
 
- - **binary** : les labels sont représentés par 0 ou 1 (utile pour la classification binaire)
+## IV - Technologies
+
+- **Backend :**
+
+        - fastapi
+        - httpx
+        - postresql
+        - sqlalchemy
+        - python-dotenv
+        - pytest
+        - joblib
+
+- **Convolutional Neural Network (CNN) :**
+
+        - kagglehub
+        - numpy
+        - tensorflow / keras
+        - matplotlib
+        - opencv-python
+
+## V - Installation 
+- Cloner le projet :
+
+        git clone https://github.com/SaidaAourras/Detection_Emotions_Faciales.git
+        cd Detection_Emotions_Faciales
+
+- Installer les dépendances :
+
+        pip install -r requirements.txt
+
+- Lancer l’API FastAPI :
+
+        uvicorn backend.main:app --reload
+
+- Exécuter les tests unitaires :
+
+        pytest -v
+
+## VII – Utilisation
+
+- Route POST /predict_emotion : envoyer une image pour obtenir l’émotion prédite.
+
+- Route GET /history : consulter l’historique des prédictions dans PostgreSQL.
+
+- Script detect_and_predict.py : détecte le visage et affiche la prédiction sur l’image.
+
+## VII - Fonctionnalités
+
+- Détection de visage automatique
+
+- Prédiction des émotions (happy, sad, angry, surprised, etc.)
+
+- Stockage des résultats dans PostgreSQL
+
+- API REST fonctionnelle
+
+- Tests unitaires et CI/CD avec GitHub Actions
