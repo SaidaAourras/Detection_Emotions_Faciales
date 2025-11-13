@@ -10,3 +10,4 @@ sqlalchemy
 python-dotenv
 pytest
 joblib
+python-dotenv
