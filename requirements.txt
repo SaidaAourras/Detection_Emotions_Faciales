@@ -1,4 +1,5 @@
 kagglehub
+fastapi
 scikit-learn
 numpy
 tensorflow
