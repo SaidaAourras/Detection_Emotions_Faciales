@@ -7,3 +7,4 @@ opencv-python
 sqlalchemy
 python-dotenv
 pytest
+joblib
