@@ -1,6 +1,7 @@
 **/__pycache__/
 **/.pytest_cache/
 CNN/predict_with_cnn.py
+file.md
 venv
 datasets
 .env
