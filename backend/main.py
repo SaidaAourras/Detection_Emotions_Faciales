@@ -1,6 +1,5 @@
 from fastapi import FastAPI , Depends , File , UploadFile
 from sqlalchemy.orm import Session
-
 from backend.database import Base , get_db , engine
 import CNN.detect_and_predict as cnn_predict
 import numpy as np
