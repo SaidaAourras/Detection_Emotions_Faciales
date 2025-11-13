@@ -1,4 +1,4 @@
-from database import Base
+from backend.database import Base
 from pydantic import BaseModel
 from  sqlalchemy import Column , Integer , String , Float , Date 
 

@@ -4,12 +4,11 @@ from fastapi import FastAPI , Depends , File , UploadFile
 # from models import Create_Prediction
 from sqlalchemy.orm import Session
 # from PIL import Image
-from database import Base , get_db , engine
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),'..')))
+from backend.database import Base , get_db , engine
 import CNN.detect_and_predict as cnn_predict
 import numpy as np
 import cv2
-from models import Prediction
+from backend.models import Prediction
 from sqlalchemy import func
 
 
@@ -29,18 +28,21 @@ async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(g
         
     # decoder avec openCv
     img = cv2.imdecode(numpy_img , cv2.IMREAD_COLOR)
+   
         
-    _ , emotions , scores = cnn_predict.detect_and_predict(img , 'CNN_model.keras')
+    _ , emotions , scores = cnn_predict.detect_and_predict(img , 'CNN\CNN_model.keras')
     
-    print(emotions)
-    print(scores)
+    # print(type(img))
+    # print(emotions)
+    # print(scores)
+    
     predictions = {}
-    i = 0
+   
     for emotion , score in zip(emotions , scores):
 
         new_prediction = Prediction(
             emotion = emotion ,
-            confidence = float(score) ,
+            confidence = score ,
             image_name = file.filename,
             created_at = func.current_date()
         )
@@ -49,9 +51,9 @@ async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(g
         db.commit()
         db.refresh(new_prediction)
 
-        predictions[f'emotion {i}'] = emotion
-        predictions[f'confidance {i}'] = float(score)
-        i += 1
+        predictions['emotion'] = emotion
+        predictions['confidance'] = score
+        
         
     # for score in scores :
     #     score = float(score)
