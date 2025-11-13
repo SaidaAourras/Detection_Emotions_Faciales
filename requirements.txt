@@ -1,7 +1,6 @@
 kagglehub
 fastapi
 httpx
-scikit-learn
 numpy
 tensorflow
 matplotlib
@@ -11,3 +10,4 @@ python-dotenv
 pytest
 joblib
 python-dotenv
+psycopg2
