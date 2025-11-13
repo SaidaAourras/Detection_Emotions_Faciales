@@ -60,6 +60,14 @@ L’objectif est d’évaluer la faisabilité d’une future solution SaaS d’a
         git clone https://github.com/SaidaAourras/Detection_Emotions_Faciales.git
         cd Detection_Emotions_Faciales
 
+- Creer un enveronemnt virtuel:
+
+        python -m venv your_venv
+
+- Activer la votre enveronemnt virtuel (win)
+
+        .\your_venv\Scripts\activate
+        
 - Installer les dépendances :
 
         pip install -r requirements.txt
