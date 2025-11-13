@@ -8,6 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      DB_USER: postgres
+      DB_PASSWORD: 12345678
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_NAME: Predict_Emotion
+
     steps:
       - name:  Checkout repository
         uses: actions/checkout@v4
@@ -21,10 +28,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
-      - name: Load enviroment variables
-        run: |
-            export $(grep -v '^#' .env | xargs)
       
       - name: Run tests
         run: |
