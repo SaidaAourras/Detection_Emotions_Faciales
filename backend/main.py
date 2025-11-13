@@ -34,8 +34,10 @@ async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(g
     
     print(emotions)
     print(scores)
-    
+    predictions = {}
+    i = 0
     for emotion , score in zip(emotions , scores):
+
         new_prediction = Prediction(
             emotion = emotion ,
             confidence = float(score) ,
@@ -46,10 +48,17 @@ async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(g
         db.add(new_prediction)
         db.commit()
         db.refresh(new_prediction)
-    
+
+        predictions[f'emotion {i}'] = emotion
+        predictions[f'confidance {i}'] = float(score)
+        i += 1
+        
     # for score in scores :
     #     score = float(score)
     #     print(type(score))
+    
+    return predictions
+
 
 @app.get('/history/{image_name}')
 def get_history(image_name : str ,db:Session= Depends(get_db)):
