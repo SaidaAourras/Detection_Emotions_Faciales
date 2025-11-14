@@ -10,7 +10,13 @@ from sqlalchemy import func
 
 app = FastAPI()
 
-Base.metadata.create_all(engine)
+
+def init_db():
+    Base.metadata.create_all(engine)
+
+if __name__ == "__main__":
+    init_db()
+
 
 @app.post('/predict_emotion' )
 async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(get_db)):
