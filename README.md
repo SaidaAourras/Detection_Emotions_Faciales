@@ -99,3 +99,6 @@ L’objectif est d’évaluer la faisabilité d’une future solution SaaS d’a
 - API REST fonctionnelle
 
 - Tests unitaires et CI/CD avec GitHub Actions
+
+Developped BY :
+        SAIDA AOURRAS
