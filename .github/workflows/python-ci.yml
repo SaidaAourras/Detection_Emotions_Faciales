@@ -19,10 +19,13 @@ jobs:
 
       # Démarrer le PostgreSQL déjà installé dans GitHub Actions
       - name: Start built-in PostgreSQL
+        env:
+          PASSWORD: 12345678
+          DATABASE: Predict_Emotion
         run: |
           sudo systemctl start postgresql
-          sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '12345678';"
-          sudo -u postgres psql -c "CREATE DATABASE \"Predict_Emotion\";"
+          sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '${PASSWORD}';"
+          sudo -u postgres psql -c "CREATE DATABASE \"${DATABASE}\";"
 
       - name: Install python dependencies
         run: |
