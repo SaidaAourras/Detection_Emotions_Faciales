@@ -1,5 +1,4 @@
 import os
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),'..')))
 import tensorflow as tf
 import pytest
 # from detect_and_predict import detect_and_predict
@@ -10,10 +9,10 @@ client = TestClient(app)
 
 @pytest.fixture
 def my_model():
-    return tf.keras.models.load_model('CNN\CNN_model.keras')
+    return tf.keras.models.load_model('CNN_model.keras')
 
 def test_verify_model(my_model):
-    assert os.path.exists('CNN\CNN_model.keras')
+    assert os.path.exists('CNN_model.keras')
     model = my_model
     assert model 
 
