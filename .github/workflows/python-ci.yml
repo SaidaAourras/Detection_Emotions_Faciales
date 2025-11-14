@@ -17,7 +17,6 @@ jobs:
         with:
           python-version: '3.10'
 
-      # 🔥 Installer les dépendances système AVANT pip install
       - name: Install system dependencies
         run: |
           sudo apt-get update
