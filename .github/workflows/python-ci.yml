@@ -29,11 +29,11 @@ jobs:
 
       - name: Start PostgreSQL and create data base
         env:
-            USER : 'postgres'
-            PASSWORD : '12345678'
-            HOST : 'localhost'
-            PORT : '5432'
-            DATABASE : 'Predict_Emotion'
+            USER : postgres
+            PASSWORD : 12345678
+            HOST : localhost
+            PORT : 5432
+            DATABASE : Predict_Emotion
         run: |
             # Start postgres service
 
@@ -46,7 +46,7 @@ jobs:
             # Create the database
 
             sudo -u postgres psql -c "CREATE DATABASE \"${DATABASE}"\"
-            
+
       - name: Run tests
     
         run: |
