@@ -41,7 +41,7 @@ jobs:
 
             # set password for postgres user
 
-            sudo -u postgres psql -c "ALTER USER postrgres WITH PASSWORD ${PASSWORD}"
+            sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD ${PASSWORD}"
 
             # Create the database
 
