@@ -8,21 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # services:
-    #   postgres:
-    #     image: postgres:15
-    #     env:
-    #       POSTGRES_USER: postgres
-    #       POSTGRES_PASSWORD: 12345678
-    #       POSTGRES_DB: Predict_Emotion
-    #     ports:
-    #       - 5432:5432
-    #     options: >-
-    #       --health-cmd "pg_isready -U postgres"
-    #       --health-interval 10s
-    #       --health-timeout 5s
-    #       --health-retries 5
-
     steps:
       # Checkout du code
       - name: Checkout repository
@@ -34,6 +19,7 @@ jobs:
         with:
           python-version: '3.10'
 
+      # Installer PostgreSQL sur le runner
       - name: Install PostgreSQL
         run: |
           sudo apt-get update
