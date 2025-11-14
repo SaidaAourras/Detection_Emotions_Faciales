@@ -11,15 +11,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Set up python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-
-      - name: Load .env into GitHub Actions ENV
-        run: |
-          cat .env >> $GITHUB_ENV
+          python-version: "3.10"
 
       # Démarrer le PostgreSQL déjà installé dans GitHub Actions
       - name: Start built-in PostgreSQL
@@ -38,10 +34,10 @@ jobs:
 
       - name: Run tests
         env:
-          USER: ${{ env.USER }}
-          PASSWORD: ${{ env.PASSWORD }}
-          HOST: ${{ env.HOST }}
-          PORT: ${{ env.PORT }}
-          DATABASE: ${{ env.DATABASE }}
+          USER: postgres
+          PASSWORD: 12345678
+          HOST: localhost
+          PORT: 5432
+          DATABASE: Predict_Emotion
         run: |
           pytest -v
