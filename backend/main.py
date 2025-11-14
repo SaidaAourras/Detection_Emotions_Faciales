@@ -54,7 +54,7 @@ async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(g
         db.refresh(new_prediction)
 
         predictions['emotion'] = emotion
-        predictions['confidance'] = score
+        predictions['confidence'] = score
         
         
     # for score in scores :

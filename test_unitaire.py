@@ -1,11 +1,17 @@
 import os
 import tensorflow as tf
 import pytest
-# from detect_and_predict import detect_and_predict
+from backend.database import Base, engine
 from fastapi.testclient import TestClient
 from backend.main import app
- 
+
 client = TestClient(app)
+
+@pytest.fixture(scope="module", autouse=True)
+def setup_database():
+    Base.metadata.create_all(bind=engine)
+    yield
+    Base.metadata.drop_all(bind=engine)
 
 @pytest.fixture
 def my_model():
@@ -24,6 +30,4 @@ def test_format_prediction():
         
     assert response.status_code == 200
     data = response.json()
-    assert isinstance(data['emotion'], str) and isinstance(data['confidance'], float)
-
-
+    assert isinstance(data['emotion'], str) and isinstance(data['confidence'], float)
