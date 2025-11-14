@@ -17,10 +17,9 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Load env file
+      - name: Load .env into GitHub Actions ENV
         run: |
-          export $(grep -v '^#' .env | xargs)
-        shell: bash
+          cat .env >> $GITHUB_ENV
 
       # Démarrer le PostgreSQL déjà installé dans GitHub Actions
       - name: Start built-in PostgreSQL
