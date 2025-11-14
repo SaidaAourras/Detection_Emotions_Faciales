@@ -11,3 +11,4 @@ pytest
 joblib
 python-dotenv
 psycopg2
+python-multipart
