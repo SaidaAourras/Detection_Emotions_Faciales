@@ -48,6 +48,11 @@ jobs:
             sudo -u postgres psql -c "CREATE DATABASE "${DATABASE}""
 
       - name: Run tests
-    
+        env:
+            USER: postgres
+            PASSWORD: 12345678
+            HOST: localhost
+            PORT: 5432
+            DATABASE: Predict_Emotion
         run: |
           pytest -v
