@@ -6,12 +6,24 @@ import numpy as np
 import cv2
 from backend.models import Prediction
 from sqlalchemy import func
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
 
 Base.metadata.create_all(engine)
 
+
+app = FastAPI()
+
+# ----------- Add CORS Here -----------
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],   # frontend allowed (React)
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 
 @app.post('/predict_emotion' )
@@ -52,10 +64,7 @@ async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(g
         predictions['emotion'] = emotion
         predictions['confidence'] = score
         
-        
-    # for score in scores :
-    #     score = float(score)
-    #     print(type(score))
+ 
     
     return predictions
 
@@ -63,10 +72,6 @@ async def create_Prediction(file: UploadFile = File(...), db:Session = Depends(g
 @app.get('/history/{image_name}')
 def get_history(image_name : str ,db:Session= Depends(get_db)):
     history_image = db.query(Prediction).where(Prediction.image_name == image_name).all()
-    # for h in history_image:
-    #     print(type(h))
-    #     print(h)
-    # print(type(history_image))
     # print(history_image)
     return {'history' : history_image}
     
