@@ -5,3 +5,4 @@ file.md
 venv
 datasets
 .env
+**/node_modules
