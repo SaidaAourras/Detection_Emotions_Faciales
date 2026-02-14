@@ -6,3 +6,5 @@ venv
 datasets
 .env
 **/node_modules
+__pycache__/
+*.pyc
